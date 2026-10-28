@@ -10,6 +10,12 @@ and a Docker Compose deployment. See `architecture.png` for services and ports.
 For environment setup, builds, local development, tests and troubleshooting, see
 [Developer guide](DEVELOPER.md).
 
+## Screenshots
+
+| Home page | Signed in UI | AI username suggestions |
+| --- | --- | --- |
+| ![Home page](assets/HomePage.png) | ![Signed in UI](assets/SignedIN-UI.png) | ![AI feature](assets/AI-Feature.png) |
+
 ## Run with Docker
 
 Requires Docker Desktop with Linux containers and Docker Compose v2. From the
