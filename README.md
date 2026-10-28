@@ -10,6 +10,12 @@ and a Docker Compose deployment. See `architecture.png` for services and ports.
 For environment setup, builds, local development, tests and troubleshooting, see
 [Developer guide](DEVELOPER.md).
 
+## Screenshots
+
+| Home page | Signed in UI | AI username suggestions |
+| --- | --- | --- |
+| ![Home page](assets/HomePage.png) | ![Signed in UI](assets/SignedIN-UI.png) | ![AI feature](assets/AI-Feature.png) |
+
 ## Run with Docker
 
 Requires Docker Desktop with Linux containers and Docker Compose v2. From the
@@ -141,12 +147,23 @@ consider an HttpOnly cookie/session design for a larger product.
 
 ## Verification and submission
 
-Checked here: AI unit tests (10 passing), Python lint/format, standalone backend validation tests (3 passing), JavaScript syntax
-where supported by Node, and Compose configuration. Complete
-Node tests, Prettier execution and live Groq calls still need verification where
-Docker/package downloads are permitted. The supplied Docker logs confirm the React
-production build succeeded and the application containers started, with MySQL,
-Express and FastAPI healthy. End-to-end smoke/browser verification remains pending.
+**Checked here:**
+- AI unit tests — 10 passing
+- Python lint/format
+- Standalone backend validation tests — 3 passing
+- JavaScript syntax (where supported by Node)
+- Compose configuration
+- Docker logs confirm:
+  - React production build succeeded
+  - Application containers started
+  - MySQL, Express, and FastAPI healthy
+
+**Still needs verification** (where Docker/package downloads are permitted):
+- Complete Node tests
+- Prettier execution
+- Live Groq calls
+- End-to-end smoke/browser verification (remains pending)
+
 A live AI call requires your own Groq key and model access.
 
 Before submitting, run the tests and browser flows, and recreate the ZIP after
@@ -158,7 +175,8 @@ python scripts/package-submission.py
 
 Upload `nagaed-submission.zip` (or a public GitHub repository) using the form in the
 assignment. Use subject `Satyam Singh - Software Developer Hurdle Task Submission`.
-The form has not been submitted on your behalf.
+Public repository: https://github.com/SatyamSingh8306/nagaed-assignment
+(branch `feature/gpt-oss-120b-model`). The form has not been submitted on your behalf.
 
 Integration references: [LangChain ChatGroq](https://reference.langchain.com/python/langchain-groq/chat_models/ChatGroq/with_structured_output),
 [Groq JSON mode](https://console.groq.com/docs/structured-outputs).
