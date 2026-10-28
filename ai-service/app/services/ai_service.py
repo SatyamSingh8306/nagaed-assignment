@@ -2,7 +2,7 @@ import asyncio
 import logging
 from functools import lru_cache
 
-from groq import APIError
+from groq import APIError, NotFoundError
 from langchain_core.exceptions import OutputParserException
 from pydantic import ValidationError
 
@@ -29,6 +29,12 @@ class AIService:
             async with asyncio.timeout(19):
                 result = await self.provider.suggest(interests)
             return Suggestions.model_validate(result)
+        except NotFoundError as exc:
+            logger.warning("Configured Groq model was not found or is inaccessible")
+            raise AIServiceError(
+                503,
+                "The configured AI model is unavailable. Check GROQ_MODEL and your Groq model access.",
+            ) from exc
         except (APIError, OutputParserException, ValidationError, ValueError, TimeoutError) as exc:
             logger.warning("Username provider failed: %s", type(exc).__name__)
             raise AIServiceError(

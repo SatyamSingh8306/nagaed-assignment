@@ -38,7 +38,9 @@ Structure:
 
 The LangChain provider uses JSON mode and validates the result with Pydantic.
 Each attempt has an eight-second timeout and the whole operation is capped at
-19 seconds. Missing key: 503; invalid interests: 422; provider/output failure: 502.
+19 seconds. The default model is `openai/gpt-oss-120b`, with a 1024-token completion budget
+including reasoning. Missing key/model access: 503; invalid interests: 422; other
+provider/output failures: 502.
 The liveness health check does not consume paid API requests or require a key.
 The HTTP client is created once per process and reused through a cached service.
 No interests, model responses or secrets are written to application logs.

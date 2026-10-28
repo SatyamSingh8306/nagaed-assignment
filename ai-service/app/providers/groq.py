@@ -14,7 +14,7 @@ class GroqProvider:
             api_key=settings.groq_api_key,
             model=settings.groq_model,
             temperature=0.9,
-            max_tokens=200,
+            max_tokens=1024,
             timeout=settings.groq_timeout_seconds,
             max_retries=0,
         )
