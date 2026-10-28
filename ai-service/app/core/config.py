@@ -12,7 +12,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
     groq_api_key: SecretStr = SecretStr("")
-    groq_model: str = Field(default="llama-3.3-70b-versatile", min_length=1)
+    groq_model: str = Field(default="openai/gpt-oss-120b", min_length=1)
     groq_timeout_seconds: float = Field(default=8, gt=0, le=10)
     log_level: str = Field(default="INFO", pattern="^(DEBUG|INFO|WARNING|ERROR|CRITICAL)$")
 

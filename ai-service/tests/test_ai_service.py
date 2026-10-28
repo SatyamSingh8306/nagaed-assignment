@@ -3,7 +3,7 @@ from unittest.mock import AsyncMock, patch
 
 import httpx
 from fastapi.testclient import TestClient
-from groq import APIConnectionError, AuthenticationError
+from groq import APIConnectionError, AuthenticationError, NotFoundError
 
 from app.core.config import Settings
 from app.main import app
@@ -53,6 +53,15 @@ class RouteTests(unittest.TestCase):
         self.assertEqual(result.status_code, 502)
         self.assertIn("unavailable", result.json()["error"]["message"])
 
+    def test_model_not_found(self):
+        response = httpx.Response(404, request=httpx.Request("POST", "https://example.test"))
+        self.provider.suggest.side_effect = NotFoundError(
+            "model not found", response=response, body=None
+        )
+        result = self.client.post("/api/suggest-username", json={"interests": ["music"]})
+        self.assertEqual(result.status_code, 503)
+        self.assertIn("GROQ_MODEL", result.json()["error"]["message"])
+
     def test_invalid_output(self):
         for values in (
             ["Same", "same", "Other"],
@@ -86,6 +95,8 @@ class ProviderTests(unittest.IsolatedAsyncioTestCase):
             provider = GroqProvider(Settings(groq_api_key="test-only", _env_file=None))
             result = await provider.suggest(["music"])
             self.assertEqual(result.suggestions, NAMES["suggestions"])
+            self.assertEqual(model.call_args.kwargs["model"], "openai/gpt-oss-120b")
+            self.assertEqual(model.call_args.kwargs["max_tokens"], 1024)
             model.return_value.with_structured_output.assert_called_once_with(
                 Suggestions, method="json_mode"
             )

@@ -7,6 +7,9 @@ A complete registration and authentication feature with a React frontend,
 Express/MySQL backend, FastAPI username suggestions using LangChain Groq,
 and a Docker Compose deployment. See `architecture.png` for services and ports.
 
+For environment setup, builds, local development, tests and troubleshooting, see
+[Developer guide](DEVELOPER.md).
+
 ## Run with Docker
 
 Requires Docker Desktop with Linux containers and Docker Compose v2. From the
@@ -138,11 +141,13 @@ consider an HttpOnly cookie/session design for a larger product.
 
 ## Verification and submission
 
-Checked here: AI unit tests (9 passing), Python lint/format, standalone backend validation tests (3 passing), JavaScript syntax
-where supported by Node, and Compose configuration. Full container startup,
-Node tests, React production build, Prettier execution and live Groq calls still
-need verification where Docker/package downloads are permitted. A live call also
-requires your own Groq key. No successful Docker runtime check is claimed.
+Checked here: AI unit tests (10 passing), Python lint/format, standalone backend validation tests (3 passing), JavaScript syntax
+where supported by Node, and Compose configuration. Complete
+Node tests, Prettier execution and live Groq calls still need verification where
+Docker/package downloads are permitted. The supplied Docker logs confirm the React
+production build succeeded and the application containers started, with MySQL,
+Express and FastAPI healthy. End-to-end smoke/browser verification remains pending.
+A live AI call requires your own Groq key and model access.
 
 Before submitting, run the tests and browser flows, and recreate the ZIP after
 any changes:
