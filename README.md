@@ -164,7 +164,8 @@ python scripts/package-submission.py
 
 Upload `nagaed-submission.zip` (or a public GitHub repository) using the form in the
 assignment. Use subject `Satyam Singh - Software Developer Hurdle Task Submission`.
-The form has not been submitted on your behalf.
+Public repository: https://github.com/SatyamSingh8306/nagaed-assignment
+(branch `feature/gpt-oss-120b-model`). The form has not been submitted on your behalf.
 
 Integration references: [LangChain ChatGroq](https://reference.langchain.com/python/langchain-groq/chat_models/ChatGroq/with_structured_output),
 [Groq JSON mode](https://console.groq.com/docs/structured-outputs).
